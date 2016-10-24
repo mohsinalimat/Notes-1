@@ -23,16 +23,16 @@ class ListNotesTableViewController: UITableViewController {
         notes = RealmHelper.retrieveNotes()
     }
     // 1
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return notes.count
     }
     
     // 2
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("listNotesTableViewCell", forIndexPath: indexPath) as! ListNotesTableViewCell
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "listNotesTableViewCell", for: indexPath) as! ListNotesTableViewCell
         
         // 1
-        let row = indexPath.row
+        let row = (indexPath as NSIndexPath).row
         
         // 2
         let note = notes[row]
@@ -46,7 +46,7 @@ class ListNotesTableViewController: UITableViewController {
         return cell
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let identifier = segue.identifier {
             if identifier == "displayNote" {
                 print("Table view cell tapped")
@@ -54,9 +54,9 @@ class ListNotesTableViewController: UITableViewController {
                 // 1
                 let indexPath = tableView.indexPathForSelectedRow!
                 // 2
-                let note = notes[indexPath.row]
+                let note = notes[(indexPath as NSIndexPath).row]
                 // 3
-                let displayNoteViewController = segue.destinationViewController as! DisplayNoteViewController
+                let displayNoteViewController = segue.destination as! DisplayNoteViewController
                 // 4
                 displayNoteViewController.note = note
                 
@@ -66,16 +66,16 @@ class ListNotesTableViewController: UITableViewController {
         }
     }
     
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath)
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath)
     {
-        if editingStyle == .Delete {
+        if editingStyle == .delete {
             //1
-            RealmHelper.deleteNote(notes[indexPath.row])
+            RealmHelper.deleteNote(notes[(indexPath as NSIndexPath).row])
             //2
             notes = RealmHelper.retrieveNotes()
         }
     }
-    @IBAction func unwindToListNotesViewController(segue: UIStoryboardSegue) {
+    @IBAction func unwindToListNotesViewController(_ segue: UIStoryboardSegue) {
         
         // for now, simply defining the method is sufficient.
         // we'll add code later

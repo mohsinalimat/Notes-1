@@ -187,6 +187,7 @@
 					2E4A078F1C42F3B0007F415F = {
 						CreatedOnToolsVersion = 7.2;
 						DevelopmentTeam = 8GEKYYW3CQ;
+						LastSwiftMigration = 0800;
 					};
 				};
 			};
@@ -374,6 +375,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.okitsolivia.onotes;
 				PRODUCT_NAME = ONotes;
 				PROVISIONING_PROFILE = "";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -395,6 +397,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.okitsolivia.onotes;
 				PRODUCT_NAME = ONotes;
 				PROVISIONING_PROFILE = "";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

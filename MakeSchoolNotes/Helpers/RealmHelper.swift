@@ -11,19 +11,19 @@ import RealmSwift
 
 class RealmHelper {
 
-    static func addNote(note: Note) {
+    static func addNote(_ note: Note) {
         let realm = try! Realm()
         try! realm.write() {
             realm.add(note)
     }
 }
-    static func deleteNote(note: Note) {
+    static func deleteNote(_ note: Note) {
         let realm = try! Realm()
         try! realm.write() {
             realm.delete(note)
         }
     }
-    static func updateNote(noteToBeUpdated: Note, newNote: Note) {
+    static func updateNote(_ noteToBeUpdated: Note, newNote: Note) {
         let realm = try! Realm()
         try! realm.write() {
             noteToBeUpdated.title = newNote.title
